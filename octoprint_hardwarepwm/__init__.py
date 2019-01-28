@@ -22,6 +22,8 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
 	self.Freq = 512
 	self.dutyCycle = 10
         self.GPIO = pigpio.pi()
+	self._logger.info("ASD")
+	self._logger.info(self.GPIO.connected)
 
     def startPWM(self, pin, hz, percCycle):
         cycle=int(percCycle/100)*1000000
@@ -44,7 +46,7 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
         self.IOpin = int(self._settings.get(["IOpin"]))
         self.Freq = int(self._settings.get(["Freq"]))
         self.dutyCycle = int( self._settings.get(["dutyCycle"]))
-        #self.startPWM(self.IOpin, self.Freq, self.dutyCycle)
+        self.startPWM(self.IOpin, self.Freq, self.dutyCycle)
 
     def on_settings_save(self, data):
 	octoprint.plugin.SettingsPlugin.on_settings_save(self, data)
