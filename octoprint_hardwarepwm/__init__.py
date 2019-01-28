@@ -18,14 +18,15 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
                         octoprint.plugin.TemplatePlugin):
 
     def __init__(self):
-	self.IOpin = 0
-	self.Freq = 0
-	self.dutyCycle = 0
+	self.IOpin = 19
+	self.Freq = 512
+	self.dutyCycle = 10
         self.GPIO = pigpio.pi()
 
     def startPWM(self, pin, hz, percCycle):
+	cycle=(percCycle/100)*1000000
         self.GPIO.set_mode(pin, pigpio.ALT5)
-        self.GPIO.hardware_PWM(pin, hz, 100)
+        self.GPIO.hardware_PWM(pin, hz, cycle)
 
     def stopPWM(self, pin):
         self.GPIO.write(pin, 0)
