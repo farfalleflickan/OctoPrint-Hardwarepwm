@@ -44,7 +44,7 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
         self.IOpin = int(self._settings.get(["IOpin"]))
         self.Freq = int(self._settings.get(["Freq"]))
         self.dutyCycle = int( self._settings.get(["dutyCycle"]))
-        self.startPWM(self.IOpin, self.Freq, self.dutyCycle)
+        #self.startPWM(self.IOpin, self.Freq, self.dutyCycle)
 
     def on_settings_save(self, data):
 	octoprint.plugin.SettingsPlugin.on_settings_save(self, data)
