@@ -24,7 +24,7 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
         self.GPIO = pigpio.pi()
 
     def startPWM(self, pin, hz, percCycle):
-	cycle=(percCycle/100)*1000000
+        cycle=int(percCycle/100)*1000000
         self.GPIO.set_mode(pin, pigpio.ALT5)
         self.GPIO.hardware_PWM(pin, hz, cycle)
 
@@ -41,13 +41,15 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
 		)
 
     def on_after_startup(self):
-        self.IOpin = self._settings.get(["IOpin"])
-        self.Freq = self._settings.get(["Freq"])
-        self.dutyCycle = self._settings.get(["dutyCycle"])
+        self.IOpin = int(self._settings.get(["IOpin"]))
+        self.Freq = int(self._settings.get(["Freq"]))
+        self.dutyCycle = int( self._settings.get(["dutyCycle"]))
         self.startPWM(self.IOpin, self.Freq, self.dutyCycle)
 
     def on_settings_save(self, data):
 	octoprint.plugin.SettingsPlugin.on_settings_save(self, data)
+        self.stopPWM(self.IOpin)
+        self.startPWM(self.IOpin, self.Freq, self.dutyCycle)
 
     ##~~ AssetPlugin mixin
     def get_assets(self):
@@ -61,9 +63,9 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
 
     def get_template_vars(self):
         return dict(
-			IOpin = self._settings.get(["IOpin"]),
-			Freq = self._settings.get(["Freq"]),
-			dutyCycle = self._settings.get(["dutyCycle"])
+			IOpin = int(self._settings.get(["IOpin"])),
+			Freq = int(self._settings.get(["Freq"])),
+                        dutyCycle = int(self._settings.get(["dutyCycle"]))
 	    )
 
     def get_template_configs(self):
@@ -84,7 +86,7 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
 		displayVersion=self._plugin_version,
                 # version check: github repository
 		type="github_release",
-		user="you",
+		user="pastapojken",
 		repo="OctoPrint-Hardwarepwm",
 		current=self._plugin_version,
                 # update method: pip
