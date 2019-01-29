@@ -1,6 +1,6 @@
 # OctoPrint-Hardwarepwm
 
-**TODO:** Describe what your plugin does.
+Uses PiGPIO to drive a hardware PWM pin. Super early stages!
 
 ## Setup
 
@@ -9,9 +9,7 @@ or manually using this URL:
 
     https://github.com/pastapojken/OctoPrint-Hardwarepwm/archive/master.zip
 
-**TODO:** Describe how to install your plugin, if more needs to be done than just installing it via pip or through
-the plugin manager.
 
 ## Configuration
 
-**TODO:** Describe your plugin's configuration options (if any).
+Defaults to pin 19 (BCM pin naming). To change the pin, frequency or the dutycycle, simply edit the corresponding fields in the settings page.
