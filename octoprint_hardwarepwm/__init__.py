@@ -20,18 +20,24 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
     def __init__(self):
 	self.IOpin = 19
 	self.Freq = 512
-	self.dutyCycle = 10
+	self.dutyCycle = 50
         self.GPIO = pigpio.pi()
-	self._logger.info("ASD")
-	self._logger.info(self.GPIO.connected)
 
     def startPWM(self, pin, hz, percCycle):
-        cycle=int(percCycle/100)*1000000
-        self.GPIO.set_mode(pin, pigpio.ALT5)
-        self.GPIO.hardware_PWM(pin, hz, cycle)
+        cycle=float(percCycle/100)*1000000
+        if (self.GPIO.connected):
+		self.GPIO.set_mode(pin, pigpio.ALT5)
+        	self.GPIO.hardware_PWM(pin, hz, cycle)
+	else:
+		self._logger.info("Not connected to PIGPIO")
 
     def stopPWM(self, pin):
-        self.GPIO.write(pin, 0)
+        if (self.GPIO.connected):
+                self.GPIO.write(pin, 0)
+        else:
+                self._logger.info("Not connected to PIGPIO")
+
+    def shutOffPWM(self):
         self.GPIO.stop()
 
     ##~~ SettingsPlugin mixin
@@ -43,14 +49,17 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
 		)
 
     def on_after_startup(self):
-        self.IOpin = int(self._settings.get(["IOpin"]))
-        self.Freq = int(self._settings.get(["Freq"]))
-        self.dutyCycle = int( self._settings.get(["dutyCycle"]))
+        self.IOpin = float(self._settings.get(["IOpin"]))
+        self.Freq = float(self._settings.get(["Freq"]))
+        self.dutyCycle = float(self._settings.get(["dutyCycle"]))
         self.startPWM(self.IOpin, self.Freq, self.dutyCycle)
 
     def on_settings_save(self, data):
 	octoprint.plugin.SettingsPlugin.on_settings_save(self, data)
-        self.stopPWM(self.IOpin)
+	self.stopPWM(self.IOpin)
+	self.IOpin = float(self._settings.get(["IOpin"]))
+        self.Freq = float(self._settings.get(["Freq"]))
+        self.dutyCycle = float(self._settings.get(["dutyCycle"]))
         self.startPWM(self.IOpin, self.Freq, self.dutyCycle)
 
     ##~~ AssetPlugin mixin
@@ -65,9 +74,9 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
 
     def get_template_vars(self):
         return dict(
-			IOpin = int(self._settings.get(["IOpin"])),
-			Freq = int(self._settings.get(["Freq"])),
-                        dutyCycle = int(self._settings.get(["dutyCycle"]))
+			IOpin = float(self._settings.get(["IOpin"])),
+			Freq = float(self._settings.get(["Freq"])),
+                        dutyCycle = float(self._settings.get(["dutyCycle"]))
 	    )
 
     def get_template_configs(self):
