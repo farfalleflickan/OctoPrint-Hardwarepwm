@@ -5,6 +5,7 @@ import pigpio
 class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
                         octoprint.plugin.AssetPlugin,
                         octoprint.plugin.StartupPlugin,
+			octoprint.plugin.ShutdownPlugin,
                         octoprint.plugin.TemplatePlugin):
 
     def __init__(self):
@@ -16,16 +17,19 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
     def startPWM(self, pin, hz, percCycle):
         cycle=float(percCycle/100)*1000000
         if (self.GPIO.connected):
-		self.GPIO.set_mode(pin, pigpio.ALT5)
-        	self.GPIO.hardware_PWM(pin, hz, cycle)
+		if (self.IOpin==12 or self.IOpin==13 or self.IOpin==18 or self.IOpin==19):
+			self.GPIO.set_mode(self.IOpin, pigpio.ALT5)
+        		self.GPIO.hardware_PWM(self.IOpin, hz, cycle)
+		else:
+			self._logger.error(str(self.IOpin)+" is not a hardware PWM pin.")
 	else:
-		self._logger.info("Not connected to PIGPIO")
+		self._logger.error("Not connected to PIGPIO")
 
     def stopPWM(self, pin):
         if (self.GPIO.connected):
                 self.GPIO.write(pin, 0)
         else:
-                self._logger.info("Not connected to PIGPIO")
+                self._logger.error("Not connected to PIGPIO")
 
     def shutOffPWM(self):
         self.GPIO.stop()
@@ -42,6 +46,10 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
         self.Freq = float(self._settings.get(["Freq"]))
         self.dutyCycle = float(self._settings.get(["dutyCycle"]))
         self.startPWM(self.IOpin, self.Freq, self.dutyCycle)
+
+    def on_shutdown(self):
+        self.stopPWM(self.IOpin);
+        self.shutOffPWM();
 
     def on_settings_save(self, data):
 	octoprint.plugin.SettingsPlugin.on_settings_save(self, data)
