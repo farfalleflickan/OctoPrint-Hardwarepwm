@@ -1,8 +1,8 @@
 <div class="row-fluid">
 <h2>Dutycycle</h2>
 <div class="input-append">
-    <input type="text" class="input-mini" data-bind="">
-    <button class="btn btn-input-inc" title="Set PWM" data-bind="">
+    <input type="text" class="input" data-bind="value: perc">
+    <button class="btn btn-input-inc" title="Set PWM" data-bind="click: $root.handlePWM">
         <i class="fa fa-check"></i>
     </button>
 </div>

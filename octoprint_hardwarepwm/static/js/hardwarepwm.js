@@ -1,29 +1,42 @@
 /*
  * View model for OctoPrint-Hardwarepwm
  *
- * Author: You
+ * Author: Dario Rostirolla
  * License: AGPLv3
  */
 $(function() {
     function HardwarepwmViewModel(parameters) {
         var self = this;
+	self.settings = parameters[0];
+        self.perc = ko.observable();
 
-        // assign the injected parameters, e.g.:
-        // self.loginStateViewModel = parameters[0];
-        // self.settingsViewModel = parameters[1];
+	self.onBeforeBinding = function() {
+            self.perc(self.settings.settings.plugins.hardwarepwm.dutyCycle());
+        }
 
-        // TODO: Implement your plugin's view model here.
+	self.handlePWM = function (item) {
+		var pwmVal = item.perc();
+		if (pwmVal < 0 || pwmVal > 100 || isNaN(pwmVal)) {
+			new PNotify({
+				title: "hardwarePWM",
+				text: "Duty cycle value needs to be between 0 and 100!",
+				type: "error"
+			});
+		} else {
+			$.ajax({
+				type: "POST",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				data: JSON.stringify({"val":pwmVal}),
+				url: window.PLUGIN_BASEURL + "hardwarepwm/setPWM"
+			});
+		}
+	};
     }
 
-    /* view model class, parameters for constructor, container to bind to
-     * Please see http://docs.octoprint.org/en/master/plugins/viewmodels.html#registering-custom-viewmodels for more details
-     * and a full list of the available options.
-     */
     OCTOPRINT_VIEWMODELS.push({
         construct: HardwarepwmViewModel,
-        // ViewModels your plugin depends on, e.g. loginStateViewModel, settingsViewModel, ...
-        dependencies: [ /* "loginStateViewModel", "settingsViewModel" */ ],
-        // Elements to bind to, e.g. #settings_plugin_hardwarepwm, #tab_plugin_hardwarepwm, ...
-        elements: [ /* ... */ ]
+        dependencies: [ "settingsViewModel" ],
+        elements: [ "#tab_plugin_hardwarepwm" ]
     });
 });
