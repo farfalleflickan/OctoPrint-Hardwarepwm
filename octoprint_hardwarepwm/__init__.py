@@ -64,9 +64,7 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
 
     def get_assets(self):
 	return dict(
-	    js=["js/hardwarepwm.js"],
-	    css=["css/hardwarepwm.css"],
-	    less=["less/hardwarepwm.less"]
+	    js=["js/hardwarepwm.js"]
 	    )
 
     def get_template_vars(self):
