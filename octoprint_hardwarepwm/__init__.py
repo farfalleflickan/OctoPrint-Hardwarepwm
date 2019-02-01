@@ -89,7 +89,7 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
 		user="pastapojken",
 		repo="OctoPrint-Hardwarepwm",
 		current=self._plugin_version,
-		pip="https://github.com/you/OctoPrint-Hardwarepwm/archive/{target_version}.zip"
+		pip="https://github.com/pastapojken/OctoPrint-Hardwarepwm/archive/{target_version}.zip"
 	    )
         )
 
