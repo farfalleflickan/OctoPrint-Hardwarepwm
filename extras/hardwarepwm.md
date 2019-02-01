@@ -3,15 +3,15 @@ layout: plugin
 
 id: hardwarepwm
 title: OctoPrint-Hardwarepwm
-description: TODO
+description: Plugin for true hardware PWM on the Raspberry Pi
 author: Dario Rostirolla
 license: AGPLv3
 
 date: 2019-02-01
 
-homepage: https://github.com/you/OctoPrint-Hardwarepwm
-source: https://github.com/you/OctoPrint-Hardwarepwm
-archive: https://github.com/you/OctoPrint-Hardwarepwm/archive/master.zip
+homepage: https://github.com/pastapojken/OctoPrint-Hardwarepwm
+source: https://github.com/pastapojken/OctoPrint-Hardwarepwm
+archive: https://github.com/pastapojken/OctoPrint-Hardwarepwm/archive/master.zip
 
 tags:
 - hardware pwm
@@ -20,15 +20,14 @@ tags:
 - leds
 
 screenshots:
-- url: settingsPage.png
+- url: https://github.com/pastapojken/OctoPrint-Hardwarepwm/extras/settingsPage.png
   alt: settings page
   caption: Settings page
-- url: tabPage.png
+- url: https://github.com/pastapojken/OctoPrint-Hardwarepwm/extras/tabPage.png
   alt: tab page
   caption: Tab page
-- ...
 
-featuredimage: tabPage.png
+featuredimage: https://github.com/pastapojken/OctoPrint-Hardwarepwm/extras/settingsPage.png
 
 compatibility:
 
