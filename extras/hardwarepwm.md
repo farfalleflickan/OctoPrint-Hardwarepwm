@@ -20,14 +20,14 @@ tags:
 - leds
 
 screenshots:
-- url: https://github.com/pastapojken/OctoPrint-Hardwarepwm/blob/master/extras/settingsPage.png
+- url: /assets/img/plugins/hardwarepwm/settingsPage.png
   alt: settings page
   caption: Settings page
-- url: https://github.com/pastapojken/OctoPrint-Hardwarepwm/blob/master/extras/tabPage.png
+- url: /assets/img/plugins/hardwarepwm/tabPage.png
   alt: tab page
   caption: Tab page
 
-featuredimage: https://github.com/pastapojken/OctoPrint-Hardwarepwm/blob/master/extras/settingsPage.png
+featuredimage: /assets/img/plugins/hardwarepwm/settingsPage.png
 
 compatibility:
 
