@@ -4,30 +4,21 @@ layout: plugin
 id: hardwarepwm
 title: OctoPrint-Hardwarepwm
 description: TODO
-author: You
+author: Dario Rostirolla
 license: AGPLv3
 
-# TODO
-date: today's date in format YYYY-MM-DD, e.g. 2015-04-21
+date: 2019-02-01
 
 homepage: https://github.com/you/OctoPrint-Hardwarepwm
 source: https://github.com/you/OctoPrint-Hardwarepwm
 archive: https://github.com/you/OctoPrint-Hardwarepwm/archive/master.zip
 
-# TODO
-# Set this to true if your plugin uses the dependency_links setup parameter to include
-# library versions not yet published on PyPi. SHOULD ONLY BE USED IF THERE IS NO OTHER OPTION!
-#follow_dependency_links: false
-
-# TODO
 tags:
-- a list
-- of tags
-- that apply
-- to your plugin
-- (take a look at the existing plugins for what makes sense here)
+- hardware pwm
+- control
+- pwm
+- leds
 
-# TODO
 screenshots:
 - url: url of a screenshot, /assets/img/...
   alt: alt-text of a screenshot
@@ -79,9 +70,6 @@ compatibility:
 
   os:
   - linux
-  - windows
-  - macos
-  - freebsd
 
 ---
 
