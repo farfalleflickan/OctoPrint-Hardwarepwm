@@ -7,7 +7,7 @@ description: Plugin for true hardware PWM on the Raspberry Pi
 author: Daria Rostirolla
 license: AGPLv3
 
-date: 2019-02-01
+date: 2019-02-08
 
 homepage: https://github.com/pastapojken/OctoPrint-Hardwarepwm
 source: https://github.com/pastapojken/OctoPrint-Hardwarepwm
@@ -31,14 +31,13 @@ featuredimage: /assets/img/plugins/hardwarepwm/settingsPage.png
 
 compatibility:
 
-  compatibility:
-  - python: ">=2.7,<4"
-
   octoprint:
   - 1.2.0
 
   os:
   - linux
+
+  python: ">=2.7,<4"
 
 ---
 
