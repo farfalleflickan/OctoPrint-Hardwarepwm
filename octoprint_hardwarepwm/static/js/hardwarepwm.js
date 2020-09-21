@@ -1,7 +1,7 @@
 /*
  * View model for OctoPrint-Hardwarepwm
  *
- * Author: Dario Rostirolla
+ * Author: Daria Rostirolla
  * License: AGPLv3
  */
 $(function() {

@@ -6,13 +6,13 @@ plugin_package = "octoprint_hardwarepwm"
 
 plugin_name = "OctoPrint-Hardwarepwm"
 
-plugin_version = "0.1.1.2"
+plugin_version = "0.1.1.3"
 
 plugin_description = """Raspberry Pi Hardware PWM """
 
-plugin_author = "Dario Rostirolla"
+plugin_author = "Daria Rostirolla"
 
-plugin_author_email = "rostirolladario@gmail.com"
+plugin_author_email = "pastapojken@gmail.com"
 
 plugin_url = "https://github.com/pastapojken/OctoPrint-Hardwarepwm"
 
@@ -49,7 +49,7 @@ setup_parameters = octoprint_setuptools.create_plugin_setup_parameters(
 	url=plugin_url,
 	license=plugin_license,
 	requires=plugin_requires,
-	additional_packages=plugin_additional_packages,
+    additional_packages=plugin_additional_packages,
 	ignored_packages=plugin_ignored_packages,
 	additional_data=plugin_additional_data
 )

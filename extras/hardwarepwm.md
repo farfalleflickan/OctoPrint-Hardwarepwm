@@ -4,7 +4,7 @@ layout: plugin
 id: hardwarepwm
 title: OctoPrint-Hardwarepwm
 description: Plugin for true hardware PWM on the Raspberry Pi
-author: Dario Rostirolla
+author: Daria Rostirolla
 license: AGPLv3
 
 date: 2019-02-01
@@ -30,6 +30,9 @@ screenshots:
 featuredimage: /assets/img/plugins/hardwarepwm/settingsPage.png
 
 compatibility:
+
+  compatibility:
+  - python: ">=2.7,<4"
 
   octoprint:
   - 1.2.0
