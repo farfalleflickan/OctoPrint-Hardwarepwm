@@ -1,6 +1,8 @@
 # OctoPrint-Hardwarepwm
 
-Uses PiGPIO to drive a hardware PWM pin. Super early stages!
+Uses PiGPIO to drive a hardware PWM pin. Super early stages!  
+You like my work? Feel free to donate :)  
+[<img src="https://raw.githubusercontent.com/andreostrovsky/donate-with-paypal/master/dark.svg" alt="donation" width="150"/>](https://www.paypal.com/donate?hosted_button_id=YEAQ4WGKJKYQQ)
 
 ## Setup
 
