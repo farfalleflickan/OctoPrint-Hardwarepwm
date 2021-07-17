@@ -19,8 +19,11 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
     def startPWM(self, pin, hz, percCycle):
         cycle=int(percCycle*10000)
         if (self.GPIO.connected):
-            if (pin==12 or pin==13 or pin==18 or pin==19):
+            if (pin==18 or pin==19):
                 self.GPIO.set_mode(pin, pigpio.ALT5)
+                self.GPIO.hardware_PWM(pin, hz, cycle)
+            elif (pin==12 or pin==13):
+                self.GPIO.set_mode(pin, pigpio.ALT0)
                 self.GPIO.hardware_PWM(pin, hz, cycle)
             else:
                 self._logger.error(str(pin)+" is not a hardware PWM pin.")
@@ -86,10 +89,10 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
                 displayName="Hardwarepwm Plugin",
                 displayVersion=self._plugin_version,
                 type="github_release",
-                user="pastapojken",
+                user="farfalleflickan",
                 repo="OctoPrint-Hardwarepwm",
                 current=self._plugin_version,
-                pip="https://github.com/pastapojken/OctoPrint-Hardwarepwm/archive/{target_version}.zip"
+                pip="https://github.com/farfalleflickan/OctoPrint-Hardwarepwm/archive/{target_version}.zip"
             )
         )
 
@@ -106,7 +109,7 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
 
 
 __plugin_name__ = "hardwarePWM"
-__plugin_pythoncompat__ = ">=2.7,<4"
+__plugin_pythoncompat__ = ">=3,<4"
 
 
 def __plugin_load__():

@@ -9,7 +9,7 @@ You like my work? Feel free to donate :)
 Install via the bundled [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager)
 or manually using this URL:
 
-    https://github.com/pastapojken/OctoPrint-Hardwarepwm/archive/master.zip
+    https://github.com/farfalleflickan/OctoPrint-Hardwarepwm/archive/master.zip
 
 
 ## Configuration
