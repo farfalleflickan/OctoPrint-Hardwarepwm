@@ -26,7 +26,7 @@ plugin_additional_packages = []
 
 plugin_ignored_packages = []
 
-additional_setup_parameters = {}
+additional_setup_parameters = {"python_requires": ">=3, <4"}
 
 from setuptools import setup
 
