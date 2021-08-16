@@ -1,9 +1,19 @@
 <div class="row-fluid">
-<h2>Dutycycle</h2>
-<div class="input-append">
-    <input type="text" class="input" data-bind="value: perc">
-    <button class="btn btn-input-inc" title="Set PWM" data-bind="click: $root.handlePWM">
-        <i class="fa fa-check"></i>
-    </button>
-</div>
+    <div class="input-append">
+        <h2>Pin #12 duty cycle</h2>
+        <input type="text" class="input" data-bind="value: perc0">
+    </div>
+    <div class="input-append">
+        <h2>Pin #13 duty cycle</h2>
+        <input type="text" class="input" data-bind="value: perc1">
+    </div>
+    <div class="input-append">
+        <h2>Pin #18 duty cycle</h2>
+        <input type="text" class="input" data-bind="value: perc2">
+    </div>
+    <div class="input-append">
+        <h2>Pin #19 duty cycle</h2>
+        <input type="text" class="input" data-bind="value: perc3">
+    </div>
+    <button class="btn btn-info" title="Set duty cycle" data-bind="click: $root.handlePWM">Set duty cycle</button>
 </div>

@@ -1,20 +1,26 @@
 <form class="form-horizontal">
     <div class="control-group">
-        <label class="control-label">{{ _('GPIO Pin') }}</label>
+       <label class="control-label">{{ _('GPIO #12 frequency') }}</label>
         <div class="controls">
-            <input type="text" class="input-small" data-bind="value: settings.plugins.hardwarepwm.IOpin">
+            <input type="text" class="input-small" data-bind="value: settings.plugins.hardwarepwm.freqs()[0]">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">{{ _('Frequency') }}</label>
+        <label class="control-label">{{ _('GPIO #13 frequency') }}</label>
         <div class="controls">
-            <input type="text" class="input-small" data-bind="value: settings.plugins.hardwarepwm.Freq">
+            <input type="text" class="input-small" data-bind="value: settings.plugins.hardwarepwm.freqs()[1]">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">{{ _('Duty cycle') }}</label>
+        <label class="control-label">{{ _('GPIO #18 frequency') }}</label>
         <div class="controls">
-            <input type="text" class="input-small" data-bind="value: settings.plugins.hardwarepwm.dutyCycle">
+            <input type="text" class="input-small" data-bind="value: settings.plugins.hardwarepwm.freqs()[2]">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{{ _('GPIO #19 frequency') }}</label>
+        <div class="controls">
+            <input type="text" class="input-small" data-bind="value: settings.plugins.hardwarepwm.freqs()[3]">
         </div>
     </div>
 </form>
