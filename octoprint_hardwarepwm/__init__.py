@@ -26,6 +26,7 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
 
     def startPWM(self, pin, hz, percCycle):
         cycle=int(percCycle*10000)
+        self._logger.info("startPWM: "+str(pin)+" "+str(hz)+" "+str(percCycle))
         if (self.GPIO.connected):
             if (pin==18 or pin==19):
                 self.GPIO.set_mode(pin, pigpio.ALT5)
@@ -48,10 +49,11 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
         self.GPIO.stop()
 
     def get_settings_defaults(self):
-        return dict(pins=self.pins,freqs=self.freqs,duties=self.duties)
+        return dict(pins=[12, 13, 18, 19],freqs=[0, 0, 0, 0],duties=[0, 0, 0, 0])
 
     def on_after_startup(self):
         self.getVars()
+        self._logger.info("Loading config pins, freqs & duties: "+str(self.pins)+" "+str(self.freqs)+" "+str(self.duties))
         self.startALL()
 
     def on_shutdown(self):
@@ -71,10 +73,12 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
         self.duties[1] = int(self._settings.get(["duties"])[1])
         self.duties[2] = int(self._settings.get(["duties"])[2])
         self.duties[3] = int(self._settings.get(["duties"])[3])
+        self._logger.info("getVars: "+str(self.pins)+" "+str(self.freqs)+" "+str(self.duties))
 
     def on_settings_save(self, data):
         octoprint.plugin.SettingsPlugin.on_settings_save(self, data)
         self.stopALL()
+        self._logger.info("Saving config")
         self.getVars()
         self.startALL()
 
@@ -110,10 +114,9 @@ class HardwarepwmPlugin(octoprint.plugin.SettingsPlugin,
         self.duties[1]=duty1
         self.duties[2]=duty2
         self.duties[3]=duty3
-        newDuties=[duty0, duty1, duty2, duty3]
         self._logger.info("/setPWM args: "+str(duty0)+" "+str(duty1)+" "+str(duty2)+" "+str(duty3))
-        self._settings.set(["duties"], newDuties)
-        self._settings.save()
+        self._settings.set(["duties"], self.duties)
+        self._settings.save(True, True)
         self.stopALL()
         self.getVars()
         self.startALL()

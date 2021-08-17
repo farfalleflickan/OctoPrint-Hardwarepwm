@@ -6,7 +6,7 @@ plugin_package = "octoprint_hardwarepwm"
 
 plugin_name = "OctoPrint-Hardwarepwm"
 
-plugin_version = "0.2"
+plugin_version = "0.2.1"
 
 plugin_description = """Raspberry Pi Hardware PWM """
 
